@@ -15,7 +15,8 @@ class CreateRevisionsTable extends Migration
             $table->increments('id');
             $table->string('revisionable_type');
             $table->integer('revisionable_id');
-            $table->integer('user_id')->nullable();
+            $table->integer('responsible_id')->nullable();
+            $table->string('responsible_type')->nullable();
             $table->string('key');
             $table->text('old_value')->nullable();
             $table->text('new_value')->nullable();

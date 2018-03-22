@@ -228,13 +228,13 @@ class Revision extends Eloquent
      */
     public function userResponsible()
     {
-        if (empty($this->user_id)) { return false; }
+        if (empty($this->responsible_id)) { return false; }
         if (class_exists($class = '\Cartalyst\Sentry\Facades\Laravel\Sentry')
             || class_exists($class = '\Cartalyst\Sentinel\Laravel\Facades\Sentinel')
         ) {
-            return $class::findUserById($this->user_id);
+            return $class::findUserById($this->responsible_id);
         } else {
-            $user_model = app('config')->get('auth.model');
+            $user_model = $this->responsible_type;
 
             if (empty($user_model)) {
                 $user_model = app('config')->get('auth.providers.users.model');
@@ -245,7 +245,7 @@ class Revision extends Eloquent
             if (!class_exists($user_model)) {
                 return false;
             }
-            return $user_model::find($this->user_id);
+            return $user_model::find($this->responsible_id);
         }
     }
 

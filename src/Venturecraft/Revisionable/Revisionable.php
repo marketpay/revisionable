@@ -146,7 +146,8 @@ class Revisionable extends Eloquent
                     'key'                   => $key,
                     'old_value'             => array_get($this->originalData, $key),
                     'new_value'             => $this->updatedData[$key],
-                    'user_id'               => $this->getSystemUserId(),
+                    'responsible_id'        => $this->getSystemUserId(),
+                    'responsible_type'      => \Auth::check() ? get_class(\Auth::user()) : null,
                     'created_at'            => new \DateTime(),
                     'updated_at'            => new \DateTime(),
                 );
@@ -181,7 +182,8 @@ class Revisionable extends Eloquent
                 'key' => self::CREATED_AT,
                 'old_value' => null,
                 'new_value' => $this->{self::CREATED_AT},
-                'user_id' => $this->getSystemUserId(),
+                'responsible_id' => $this->getSystemUserId(),
+                'responsible_type' => \Auth::check() ? get_class(\Auth::user()) : null,
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             );
@@ -206,7 +208,8 @@ class Revisionable extends Eloquent
                 'key' => $this->getDeletedAtColumn(),
                 'old_value' => null,
                 'new_value' => $this->{$this->getDeletedAtColumn()},
-                'user_id' => $this->getSystemUserId(),
+                'responsible_id' => $this->getSystemUserId(),
+                'responsible_type' => \Auth::check() ? get_class(\Auth::user()) : null,
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             );
