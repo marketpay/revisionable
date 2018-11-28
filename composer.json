@@ -10,6 +10,7 @@
             "email": "me@chrisduell.com"
         }
     ],
+    "abandoned": true,
     "support": {
         "issues": "https://github.com/VentureCraft/revisionable/issues",
         "source": "https://github.com/VentureCraft/revisionable"
@@ -25,5 +26,13 @@
         "psr-0": {
             "Venturecraft\\Revisionable": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Venturecraft\\Revisionable\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.0"
     }
 }
